@@ -1,0 +1,10 @@
+/Release/
+/Debug/
+/ipch/
+/Test/
+*.user
+*.suo
+*.sdf
+*.opensdf
+*.aps
+scratch.txt
