@@ -166,10 +166,24 @@ void ClearEdit()
 	SendMessage(g_hwndChild, WM_SETTEXT, 0, 0);
 }
 
+BOOL CALLBACK AboutDialogProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	if (message == WM_COMMAND && (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL))
+	{
+		EndDialog(hwndDlg, 0);
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
 void OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 {
 	switch (id)
 	{
+	case IDM_ABOUT:
+		DialogBox(g_hinst, MAKEINTRESOURCE(IDD_ABOUTBOX), hwnd, (DLGPROC)AboutDialogProc);
+		break;
 	case IDM_CHOOSEFONT:
 		ChangeFont(hwnd);
 		break;
